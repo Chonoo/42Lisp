@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/19 18:23:11 by jbyttner          #+#    #+#             */
-/*   Updated: 2015/09/21 13:33:46 by jbyttner         ###   ########.fr       */
+/*   Updated: 2015/09/21 16:16:32 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int		ft_strcmp(char *s1, char *s2);
 
 int		ft_atoi(char *str);
 
-char	*ft_itoa(char *str);
+char	*ft_itoa(int nb);
 
 #endif

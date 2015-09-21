@@ -6,11 +6,11 @@
 /*   By: jbyttner <jbyttner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/05 16:24:28 by jbyttner          #+#    #+#             */
-/*   Updated: 2015/09/20 03:42:49 by jbyttner         ###   ########.fr       */
+/*   Updated: 2015/09/21 16:09:46 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_atoi.h"
+#include "ft_strutil.h"
 
 int		ft_atoi(char *str)
 {

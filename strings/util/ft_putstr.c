@@ -6,12 +6,12 @@
 /*   By: jbyttner <jbyttner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/20 02:56:46 by jbyttner          #+#    #+#             */
-/*   Updated: 2015/09/20 03:37:24 by jbyttner         ###   ########.fr       */
+/*   Updated: 2015/09/21 16:14:40 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "ft_atoi.h"
+#include "ft_strutil.h"
 
 int		ft_putchar(char c)
 {
