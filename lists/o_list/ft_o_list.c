@@ -6,11 +6,11 @@
 /*   By: jbyttner <jbyttner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/18 23:10:00 by jbyttner          #+#    #+#             */
-/*   Updated: 2015/09/20 00:04:11 by jbyttner         ###   ########.fr       */
+/*   Updated: 2015/09/21 16:24:48 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_double_list.h"
+#include "ft_o_list.h"
 
 t_o_list	*ft_o_list_create_elem(char *str)
 {
@@ -26,7 +26,7 @@ t_o_list	*ft_o_list_create_elem(char *str)
 	return (list);
 }
 
-void	ft_o_list_push_front(char *str, t_o_list **head)
+void		ft_o_list_push_front(char *str, t_o_list **head)
 {
 	t_o_list	*tmp;
 	t_o_list	*list;
@@ -55,7 +55,7 @@ void	ft_o_list_push_front(char *str, t_o_list **head)
 	tmp->last = list;
 }
 
-void	ft_o_list_push_back(char *str, t_o_list **head)
+void		ft_o_list_push_back(char *str, t_o_list **head)
 {
 	t_o_list	*tmp;
 	t_o_list	*list;
@@ -84,11 +84,11 @@ void	ft_o_list_push_back(char *str, t_o_list **head)
 	tmp->next = list;
 }
 
-char	*ft_o_list_pop(t_o_list **head)
+char		*ft_o_list_pop(t_o_list **head)
 {
 	t_o_list	*list;
 	t_o_list	*tmp;
-	char	*str;
+	char		*str;
 
 	if (head == 0 || head[0] == 0)
 		return (0);
@@ -107,7 +107,7 @@ char	*ft_o_list_pop(t_o_list **head)
 	return (str);
 }
 
-char	*ft_o_list_peek(t_o_list **head)
+char		*ft_o_list_peek(t_o_list **head)
 {
 	t_o_list	*list;
 
