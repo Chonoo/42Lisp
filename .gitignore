@@ -1,31 +1,22 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    .gitignore                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jbyttner <jbyttner@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/09/21 14:08:01 by jbyttner          #+#    #+#              #
-#    Updated: 2015/09/21 16:21:50 by jbyttner         ###   ########.fr        #
+#    Created: 2015/09/21 17:01:22 by jbyttner          #+#    #+#              #
+#    Updated: 2015/09/21 17:02:10 by jbyttner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=libolist.a
-SRC=ft_o_list.c
-OBJ=$(SRC:.c=.o)
-CC=gcc
-CFLAGS=-Wall -Wextra -Werror -c
+# Ignore the build and lib dirs
+build
+lib/*
 
-all:	$(NAME)
+# Ignore any executables
+bin/*
 
-$(NAME):
-	$(CC) $(CFLAGS) $(SRC)
-	ar rc $(NAME) $(OBJ)
+# Ignore Mac specific files
 
-clean:
-	rm -f $(OBJ)
-
-fclean:	clean
-	rm -f $(NAME)
-
-re:	fclean all
+.DS_Store

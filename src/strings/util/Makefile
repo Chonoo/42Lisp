@@ -6,26 +6,36 @@
 #    By: jbyttner <jbyttner@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/21 16:00:38 by jbyttner          #+#    #+#              #
-#    Updated: 2015/09/21 16:15:44 by jbyttner         ###   ########.fr        #
+#    Updated: 2015/09/21 17:21:04 by jbyttner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=libstrutil.o
+NAME=libstrutil.a
 SRC=ft_putstr.c ft_strutil.c
+ROOTDIR=../../../
+LIBDIR=$(ROOTDIR)lib/
+BINDIR=$(ROOTDIR)bin/
+INCDIR=$(ROOTDIR)include/
+BUILDDIR=$(ROOTDIR)build/
+DIR=src/strings/util
+
 OBJ=$(SRC:.c=.o)
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -O3 -c
+AR=ar
+ARFLAGS=rc
+RM=rm -f
 
 all:	$(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SRC)
-	ar rc $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -I$(INCDIR) $(SRC)
+	$(AR) $(ARFLAGS) $(LIBDIR)$(NAME) $(OBJ)
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
 fclean:	clean
-	rm -f $(NAME)
+	$(RM) $(LIBDIR)$(NAME)
 
 r: fclean all
