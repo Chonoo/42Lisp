@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/16 08:13:36 by jbyttner          #+#    #+#             */
-/*   Updated: 2015/09/22 18:25:38 by jbyttner         ###   ########.fr       */
+/*   Updated: 2015/09/22 18:28:05 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int				operator_precedence(char *s1, char *s2);
 ** Global operators table ( compile with src/runtime/exec/optable.c )
 */
 
-typedef struct	s_opp
+typedef struct	s_op
 {
 	char		*op;
 	int			(*f)(int, int);
-}				t_opp;
+}				t_op;
 
-t_opp			g_opptab[];
+t_op			g_optab[];
 
 #endif
