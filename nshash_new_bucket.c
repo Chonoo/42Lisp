@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   nshash_new_bucket.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 16:03:26 by jbyttner         ###   ########.fr       */
+/*   Created: 2016/02/14 16:17:15 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/14 16:20:08 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lisp.h"
 
-int		main(void)
+t_nshi	*nshash_new_bucket(char *str, t_lvar *var)
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
+	t_nshi	*bucket;
 
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
+	if (!(bucket = malloc(sizeof(t_nshi))))
+		return (NULL);
+	if (!(bucket->name = ft_strdup(str)))
 	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
-		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
-		}
+		free(bucket);
+		return (NULL);
 	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
+	bucket->next = 0;
+	bucket->value = var;
+	return (bucket);
 }

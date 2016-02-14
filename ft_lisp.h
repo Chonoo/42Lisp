@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 22:23:38 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:06:42 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 16:16:10 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ERR_NO_MEM 1
 # define ERR_WRONG_TYPE 2
 # define ERR_UNIMPLEMENTED 3
+# define ERR_NOT_DEFINED 4
 
 typedef struct s_lvar	t_lvar;
 
@@ -128,5 +129,27 @@ int						ltype_is_num(t_lvar *var);
 void					error_raise(int *errn, int errint);
 
 void					error_print_stack(char *str);
+
+/*
+** ## Name Spaces ##
+*/
+
+typedef struct			s_nshi
+{
+	char				*name;
+	t_lvar				*value;
+	struct s_nshi		*next;
+}						t_nshi;
+
+t_nshi					*nshash_new_bucket(char *str, t_lvar *var);
+
+typedef struct			s_nshash
+{
+	int					(*hash)(char *);
+	t_lvar				*(*get)(struct s_nshash *self, char *, int *);
+	void				(*add)(struct s_nshash *self, char *, t_lvar *, int *);
+	t_nshi				**buckets;
+	struct s_nshash		*parent;
+}						t_nshash;
 
 #endif

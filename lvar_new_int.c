@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 13:44:49 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:12:24 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 15:27:18 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static inline t_int	*lvar_new_int_aslong(char *str, int *errn)
 
 	endp = 0;
 	v = ft_strtol(str, &endp, 10);
-	if (!(*endp))
+	//if (!(*endp)) TODO: Fix hack. This is to work with GMP bignums
 	{
 		if (!(tmp = int_new()))
 		{
@@ -37,7 +37,7 @@ static inline t_int	*lvar_new_int_aslong(char *str, int *errn)
 		tmp->inttype = T_INT;
 		return (tmp);
 	}
-	return (NULL);
+	//return (NULL);
 }
 
 t_lvar		*lvar_new_int(char *str, int *errn)
