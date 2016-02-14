@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 00:57:07 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:18:50 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 18:16:42 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static inline int		t_lvar_num_add(t_lvar *res, t_lvar *a,
 	{
 		if (!(res->val->intp = int_add(a->val->intp, b->val->intp)))
 			return (-1);
-		res->type = T_INT;
+		res->type = T_INTP;
 	}
 	return (1);
 }
