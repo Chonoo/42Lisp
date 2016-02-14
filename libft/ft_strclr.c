@@ -1,39 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2015/11/25 16:58:10 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/04 16:21:39 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lisp.h"
+#include "libft.h"
 
-int		main(void)
+void	ft_strclr(char *s)
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
-
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
-	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
-		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
-		}
-	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
+	if (s)
+		ft_bzero((void *)s, ft_strlen(s));
 }

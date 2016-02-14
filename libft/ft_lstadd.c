@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2015/11/27 19:36:59 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/01/02 01:10:25 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lisp.h"
+#include "libft.h"
 
-int		main(void)
+/*
+** Added (new == 0) protection (so calls can be chained)
+*/
+
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
-
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
+	if (new)
 	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
-		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
-		}
+		new->next = (*alst);
+		*alst = new;
 	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
 }

@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2015/11/27 19:30:07 by jbyttner          #+#    #+#             */
+/*   Updated: 2015/11/27 21:57:28 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lisp.h"
+#include "libft.h"
 
-int		main(void)
+/*
+** This function fails if (*alst)->next at some point is not a valid
+** list pointer. It will probably generate a segmentation fault.
+*/
+
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
+	t_list	*next;
 
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
-	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
+	if (alst)
+		while (*alst)
 		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
+			next = (*alst)->next;
+			ft_lstdelone(alst, del);
+			*alst = next;
 		}
-	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
 }

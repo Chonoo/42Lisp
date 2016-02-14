@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2015/11/25 15:35:27 by jbyttner          #+#    #+#             */
+/*   Updated: 2015/11/29 00:28:07 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lisp.h"
+#include "libft.h"
 
-int		main(void)
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
+	size_t	i;
 
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
+	i = 0;
+	while (src[i] != '\0' && i < n)
 	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
-		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
-		}
+		dest[i] = src[i];
+		i++;
 	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

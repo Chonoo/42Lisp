@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2015/11/26 19:49:12 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/04 16:34:09 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lisp.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
+	char	*copy;
+	size_t	length;
 
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
-	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
-		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
-		}
-	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
+	if (!(s1 && s2))
+		return (0);
+	length = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (!(copy = (char *)malloc(sizeof(char) * length)))
+		return (0);
+	ft_strcpy(copy, s1);
+	ft_strcat(copy, s2);
+	return (copy);
 }

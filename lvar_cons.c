@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lvar_cons.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2016/02/14 13:33:11 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/14 13:41:07 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lisp.h"
-
-int		main(void)
+/*
+static inline t_lvar	*lvar_cons_error(int *errn)
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
-
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
-	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
-		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
-		}
-	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
+	error_raise(errn, ERR_NO_MEM);
+	error_print_stack("cons (system function)");
+	return (NULL);
 }
+
+t_lvar	*lvar_cons(t_lvar *a, t_lvar *b, int *errn)
+{
+	t_lvar	*tmp;
+
+	if (a->type == T_LVAR)
+	{
+		if (!(tmp = lvar_new()))
+			return (lvar_cons_error(errn));
+		a->
+	}
+}*/

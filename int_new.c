@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   int_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2016/02/14 14:27:26 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/14 14:31:17 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lisp.h"
 
-int		main(void)
-{
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
+/*
+** Allocates an int object. Int objects are not naturally GC-d
+** and have to be connected to a lvar at all times.
+** 1
+** Ints have no value indicating they are uninitialised. The requesting
+** function has to handle initialisation immediately.
+*/
 
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
+t_int	*int_new(void)
+{
+	t_int	*ptr;
+
+	if (!(ptr = malloc(sizeof(t_int))))
+		return (NULL);
+	if (!(ptr->val = malloc(sizeof(t_intp))))
 	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
-		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
-		}
+		free(ptr);
+		return (NULL);
 	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
+	return (ptr);
 }

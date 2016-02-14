@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   int_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:17:35 by jbyttner         ###   ########.fr       */
+/*   Created: 2016/02/14 02:03:05 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/14 15:18:15 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lisp.h"
 
-int		main(void)
+t_int	*int_add(t_int *a, t_int *b)
 {
-	t_lvar	*i1;
-	t_lvar	*i2;
-	t_lvar	*i3;
-	int		errn;
+	t_int	*res;
 
-	errn = 0;
-	i1 = lvar_new_int("12", &errn);
-	if (!(errn))
+	if (!(res = int_new()))
+		return (NULL);
+	if (a->inttype == T_INT && b->inttype == T_INT)
 	{
-		i2 = lvar_new_int("55", &errn);
-		if (!(errn))
+		if (!(res->val->intp = malloc(sizeof(long))))
 		{
-			i3 = lvar_add(i1, i2, &errn);
-			if (!(errn))
-				lvar_puts(i3);
+			free(res);
+			return (NULL);
 		}
+		*res->val->intp = *a->val->intp + *b->val->intp;
+		res->inttype = T_INT;
 	}
-	if (errn)
-		printf("Error");
-	//if (!errn)
-	//	lvar_puts(our_int);
-	return (0);
+	return (res);
 }
