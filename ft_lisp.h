@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 22:23:38 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 16:31:10 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 17:04:52 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERR_WRONG_TYPE 2
 # define ERR_UNIMPLEMENTED 3
 # define ERR_NOT_DEFINED 4
+# define ERR_IS_NULL 5
 
 typedef struct s_lvar	t_lvar;
 
@@ -92,13 +93,33 @@ void					int_puts(t_int *ptr);
 */
 
 /*
+**  ## LLST ##
+**  (lisp list type)
+*/
+
+typedef struct			s_llst
+{
+	struct s_llst		*next;
+	t_lvar				*val;
+}						t_llst;
+
+t_llst					*llst_new(void);
+
+t_lvar					*llst_car(t_llst *lst, int *errn);
+
+t_llst					*llst_cdr(t_llst *lst, int *errn);
+
+t_llst					*llst_cons(t_lvar *var, t_llst *lst, int *errn);
+
+/*
 **  ## Lvar ##
 */
 
 typedef enum			e_ltype
 {
 	T_NULLP,
-	T_INTP
+	T_INTP,
+	T_LLSTP
 }						t_ltype;
 
 typedef union			u_lptr
