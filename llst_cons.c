@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lvar_puts.c                                        :+:      :+:    :+:   */
+/*   llst_cons.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
+/*   By: jbyttner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/14 14:39:22 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 18:48:02 by jbyttner         ###   ########.fr       */
+/*   Created: 2016/02/14 18:39:13 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/14 18:52:25 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lisp.h"
 
-void	lvar_puts(t_lvar *var)
+t_llst	*llst_cons(t_lvar *a, t_llst *b, int *errn)
 {
-	t_llst	*tmp;
+	t_llst	*res;
 
-	if (var->type == T_INTP)
-		int_puts(var->val->intp);
-	else if (var->type == T_LLSTP)
+	if (!(res = llst_new()))
 	{
-		tmp = var->val->llstp;
-		printf("( ");
-		while (tmp)
-		{
-			lvar_puts(tmp->val);
-			printf(" ");
-			tmp = tmp->next;
-		}
-		printf(")");
+		error_raise(errn, ERR_NO_MEM);
+		return (NULL);
 	}
+	res->val = a;
+	res->next = b;
+	GC_INC(a);
+	return (res);
 }

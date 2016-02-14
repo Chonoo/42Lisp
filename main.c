@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 16:36:44 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 18:50:08 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,14 @@ int		main(void)
 			global->get(global, "i2", &errn), &errn);
 	if (!(errn))
 		lvar_puts(i3);
+	t_lvar *l1 = lvar_new_llst(i3, &errn);
 	if (errn)
-		printf("Error");
+		exit(0);
+	l1 = lvar_cons(i2, l1, &errn);
+	l1 = lvar_cons(i2, l1, &errn);
+	if (errn)
+		exit(0);
+	lvar_puts(l1);
 	//if (!errn)
 	//	lvar_puts(our_int);
 	return (0);

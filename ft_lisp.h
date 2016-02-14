@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 22:23:38 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 17:04:52 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 18:38:24 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef enum			e_ltype
 typedef union			u_lptr
 {
 	t_int				*intp;
+	t_llst				*llstp;
 }						t_lptr;
 
 typedef struct			s_lvar
@@ -138,6 +139,8 @@ typedef struct			s_lvar
 t_lvar					*lvar_new(void);
 
 t_lvar					*lvar_new_int(char *str, int *errn);
+
+t_lvar					*lvar_new_llst(t_lvar *var, int *errn);
 
 t_lvar					*lvar_add(t_lvar *a, t_lvar *b, int *errn);
 
