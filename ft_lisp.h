@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 22:23:38 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 18:38:24 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 19:44:48 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,18 @@ t_llst					*llst_cdr(t_llst *lst, int *errn);
 t_llst					*llst_cons(t_lvar *var, t_llst *lst, int *errn);
 
 /*
+**  ## System functions ##
+*/
+
+typedef struct			s_sysfn
+{
+	int					varcnt;
+	t_lvar				*(*fn)();
+}						t_sysfn;
+
+t_lvar					*sys_call(t_lvar **arr, t_sysfn *fn);
+
+/*
 **  ## Lvar ##
 */
 
@@ -119,13 +131,15 @@ typedef enum			e_ltype
 {
 	T_NULLP,
 	T_INTP,
-	T_LLSTP
+	T_LLSTP,
+	T_SYSFNP
 }						t_ltype;
 
 typedef union			u_lptr
 {
 	t_int				*intp;
 	t_llst				*llstp;
+	t_sysfn				*sysfnp;
 }						t_lptr;
 
 typedef struct			s_lvar
@@ -177,5 +191,12 @@ typedef struct			s_nshash
 }						t_nshash;
 
 t_nshash				*ns_global_new(int *errn);
+
+/*
+** If this function crashes, the interpreter kind of has to exit.
+** Thus error handling is done the C way
+*/
+
+int						sys_setup(t_nshash *global);
 
 #endif

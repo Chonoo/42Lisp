@@ -43,6 +43,7 @@ Thumbs.db
 # Temporary Files #
 ###################
 *.swp
+*.dSYM
 
 # 42 specific #
 libft.a

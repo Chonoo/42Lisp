@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 23:57:33 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 18:50:08 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 19:49:38 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		main(void)
 
 	errn = 0;
 	global = ns_global_new(&errn);
+	if (sys_setup(global) == -1)
+		exit(0);
 	if (errn)
 		exit(0);
 	i1 = lvar_new_int("12", &errn);
@@ -36,10 +38,13 @@ int		main(void)
 	global->add(global, "i2", i2, &errn);
 	if (errn)
 		exit(0);
-	i3 = lvar_add(global->get(global, "i1", &errn),
+	//i3 = lvar_add(global->get(global, "i1", &errn),
+	//		global->get(global, "i2", &errn), &errn);
+	i3 = global->get(global, "+", &errn)->val->sysfnp->fn(global->get(global, "i1", &errn),
 			global->get(global, "i2", &errn), &errn);
-	if (!(errn))
-		lvar_puts(i3);
+
+	//if (!(errn))
+	//	lvar_puts(i3);
 	t_lvar *l1 = lvar_new_llst(i3, &errn);
 	if (errn)
 		exit(0);
