@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 15:51:04 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 16:16:47 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 16:28:52 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,26 @@ void	ns_global_add(t_nshash *glob, char *str, t_lvar *var, int *errn)
 		bucket = bucket->next;
 	if (!(bucket->next = nshash_new_bucket(str, var)))
 		error_raise(errn, ERR_NO_MEM);
+}
+
+t_nshash	*ns_global_new(int *errn)
+{
+	t_nshash	*res;
+
+	if (!(res = malloc(sizeof(t_nshash))))
+	{
+		error_raise(errn, ERR_NO_MEM);
+		return (NULL);
+	}
+	if (!(res->buckets = malloc(sizeof(t_nshi *) * 188)))
+	{
+		free(res);
+		error_raise(errn, ERR_NO_MEM);
+		return (NULL);
+	}
+	res->hash = &ns_global_hash;
+	res->get = &ns_global_get;
+	res->add = &ns_global_add;
+	res->parent = NULL;
+	return (res);
 }

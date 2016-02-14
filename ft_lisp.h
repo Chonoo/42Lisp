@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 22:23:38 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 16:16:10 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 16:31:10 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,7 @@ typedef struct			s_nshash
 	t_nshi				**buckets;
 	struct s_nshash		*parent;
 }						t_nshash;
+
+t_nshash				*ns_global_new(int *errn);
 
 #endif
