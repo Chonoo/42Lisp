@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_raise.c                                      :+:      :+:    :+:   */
+/*   sys_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/14 02:00:29 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 21:13:09 by jbyttner         ###   ########.fr       */
+/*   Created: 2016/02/14 21:19:15 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/17 23:10:16 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lisp.h"
-
-void	error_raise(int *errn, int errint)
+/*
+int		sys_exec(t_llst *instructions)
 {
-	*errn = errint;
-	if (*errn == ERR_WRONG_TYPE)
-		ft_putendl("Error: Wrong type for args.");
-	else if (*errn == ERR_NO_MEM)
-		ft_putendl("Error: System out of memory");
-	else if (*errn == ERR_NOT_IMPLEMENTED)
-		ft_putendl("Error: Not implemented");
-	else if (*errn == ERR_NOT_DEFINED)
-		ft_putendl("Error: Variable not defined");
-	else
-		ft_putendl("Error: Unspecified");
-}
+	int		errn;
+
+	errn = 0;
+	if (sys_is_parse_keyword(in
+	return (errn);
+}*/

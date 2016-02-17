@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 22:23:38 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 19:44:48 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/17 23:19:58 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "libft.h"
 # define ERR_NO_MEM 1
 # define ERR_WRONG_TYPE 2
-# define ERR_UNIMPLEMENTED 3
+# define ERR_NOT_IMPLEMENTED 3
 # define ERR_NOT_DEFINED 4
 # define ERR_IS_NULL 5
 
@@ -124,6 +124,28 @@ typedef struct			s_sysfn
 t_lvar					*sys_call(t_lvar **arr, t_sysfn *fn);
 
 /*
+**  ## Sysstr ##
+*/
+
+typedef char			*t_sysstr;
+
+/*
+** ## Sysllst ##
+*/
+
+typedef t_llst			t_sysllst;
+
+/*
+**  ## Fn ##
+*/
+
+typedef struct			s_fn
+{
+	int					foo;
+ // TODO: all
+}						t_fn;
+
+/*
 **  ## Lvar ##
 */
 
@@ -132,15 +154,27 @@ typedef enum			e_ltype
 	T_NULLP,
 	T_INTP,
 	T_LLSTP,
-	T_SYSFNP
+	T_FNP,
+	T_SYSFNP,
+	T_SYSSTRP,
+	T_SYSLLSTP
 }						t_ltype;
 
 typedef union			u_lptr
 {
 	t_int				*intp;
 	t_llst				*llstp;
+	t_fn				*fnp;
 	t_sysfn				*sysfnp;
+	t_sysstr			sysstrp;
+	t_sysllst			*sysllstp;
 }						t_lptr;
+
+int						ltype_is_num(t_lvar *var);
+
+int						ltype_is_sysstr(t_lvar *var);
+
+int						ltype_is_sysllst(t_lvar *var);
 
 typedef struct			s_lvar
 {
@@ -162,8 +196,6 @@ t_lvar					*lvar_cons(t_lvar *a, t_lvar *b, int *errn);
 
 void					lvar_puts(t_lvar *var);
 
-int						ltype_is_num(t_lvar *var);
-
 void					error_raise(int *errn, int errint);
 
 void					error_print_stack(char *str);
@@ -175,7 +207,7 @@ void					error_print_stack(char *str);
 typedef struct			s_nshi
 {
 	char				*name;
-	t_lvar				*value;
+	t_lvar				*val;
 	struct s_nshi		*next;
 }						t_nshi;
 
@@ -192,11 +224,25 @@ typedef struct			s_nshash
 
 t_nshash				*ns_global_new(int *errn);
 
+t_lvar					*ns_get(t_nshash *ns, char *str, int *errn);
+
+void					ns_add(t_nshash *ns, char *str, t_lvar *var, int *errn);
+
+typedef t_nshash		t_ns;
+
 /*
 ** If this function crashes, the interpreter kind of has to exit.
 ** Thus error handling is done the C way
 */
 
 int						sys_setup(t_nshash *global);
+
+/*
+**  ## Parser Functions ##
+*/
+
+int						parser_str_is_int(char *s);
+
+void					lvar_define(t_ns *ns, t_lvar *v1, t_lvar *v2, int *errn);
 
 #endif

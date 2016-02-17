@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 16:17:15 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 16:20:08 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/17 23:14:17 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ t_nshi	*nshash_new_bucket(char *str, t_lvar *var)
 		return (NULL);
 	}
 	bucket->next = 0;
-	bucket->value = var;
+	bucket->val = var;
 	return (bucket);
 }

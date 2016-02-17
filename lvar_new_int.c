@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 13:44:49 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 15:27:18 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 21:14:23 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_lvar		*lvar_new_int(char *str, int *errn)
 		}
 		else
 		{
-			error_raise(errn, ERR_UNIMPLEMENTED);
+			error_raise(errn, ERR_NOT_IMPLEMENTED);
 			return (NULL); // TODO: Fix more cases
 		}
 	}

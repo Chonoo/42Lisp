@@ -6,7 +6,7 @@
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 15:51:04 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 16:28:52 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/17 23:20:24 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ns_global_hash(char *str)
 	return (res);
 }
 
-t_lvar	*ns_global_get(t_nshash *glob, char *str, int *errn)
+t_lvar	*ns_get(t_nshash *glob, char *str, int *errn)
 {
 	int		hres;
 	t_nshi	*bucket;
@@ -41,10 +41,10 @@ t_lvar	*ns_global_get(t_nshash *glob, char *str, int *errn)
 		return (NULL);
 	}
 	else
-		return (bucket->value);
+		return (bucket->val);
 }
 
-void	ns_global_add(t_nshash *glob, char *str, t_lvar *var, int *errn)
+void	ns_add(t_nshash *glob, char *str, t_lvar *var, int *errn)
 {
 	int		hres;
 	t_nshi	*bucket;
@@ -59,6 +59,8 @@ void	ns_global_add(t_nshash *glob, char *str, t_lvar *var, int *errn)
 	}
 	while (bucket && bucket->next)
 		bucket = bucket->next;
+	if (bucket->val)
+		GC_DEC(bucket->val);
 	if (!(bucket->next = nshash_new_bucket(str, var)))
 		error_raise(errn, ERR_NO_MEM);
 }
@@ -79,8 +81,8 @@ t_nshash	*ns_global_new(int *errn)
 		return (NULL);
 	}
 	res->hash = &ns_global_hash;
-	res->get = &ns_global_get;
-	res->add = &ns_global_add;
+	res->get = &ns_get;
+	res->add = &ns_add;
 	res->parent = NULL;
 	return (res);
 }

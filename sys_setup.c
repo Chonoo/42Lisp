@@ -6,7 +6,7 @@
 /*   By: jbyttner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/14 19:09:48 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 19:45:00 by jbyttner         ###   ########.fr       */
+/*   Updated: 2016/02/14 20:56:59 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,15 @@ static inline int	sys_setup_add(t_nshash *global, char *str,
 	t_lvar	*fnvar;
 	int		errn;
 
+	errn = 0;
 	if (!(fnvar = sys_setup_fn(varcnt, fn)))
 		return (-1);
 	global->add(global, str, fnvar, &errn);
 	if (errn)
+	{
+		printf("Setup error at %s, varcount %d\n", str, varcnt);
 		return (-1);
+	}
 	else
 		return (1);
 }

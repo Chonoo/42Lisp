@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_raise.c                                      :+:      :+:    :+:   */
+/*   parser_str_is_int.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbyttner <jbyttner@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/14 02:00:29 by jbyttner          #+#    #+#             */
-/*   Updated: 2016/02/14 21:13:09 by jbyttner         ###   ########.fr       */
+/*   Created: 2016/02/14 21:14:41 by jbyttner          #+#    #+#             */
+/*   Updated: 2016/02/17 21:16:52 by jbyttner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lisp.h"
 
-void	error_raise(int *errn, int errint)
+int		parser_str_is_int(char *str)
 {
-	*errn = errint;
-	if (*errn == ERR_WRONG_TYPE)
-		ft_putendl("Error: Wrong type for args.");
-	else if (*errn == ERR_NO_MEM)
-		ft_putendl("Error: System out of memory");
-	else if (*errn == ERR_NOT_IMPLEMENTED)
-		ft_putendl("Error: Not implemented");
-	else if (*errn == ERR_NOT_DEFINED)
-		ft_putendl("Error: Variable not defined");
-	else
-		ft_putendl("Error: Unspecified");
+		while (*str)
+			if (ft_isdigit(*str))
+				str++;
+		if (*str)
+			return (0);
+		else
+			return (1);
 }
